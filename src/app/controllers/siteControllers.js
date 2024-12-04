@@ -9,12 +9,9 @@ class SiteControllers {
 
     // [GET] /products
     async products(req, res) {
-        await flashSales
-            .find({})
-            .exec()
-            .then((flashSales) => {
-                res.json(flashSales);
-            });
+        await flashSales.find({}).then((flashSales) => {
+            res.json(flashSales);
+        });
     }
 
     // [POST] /products/flash-sales
@@ -24,7 +21,9 @@ class SiteControllers {
         flashSale
             .save()
             .then(() => {
-                res.redirect('/products');
+                res.status(201).json({
+                    message: 'Create flash sale successfully!!!',
+                });
             })
             .catch(next);
     }

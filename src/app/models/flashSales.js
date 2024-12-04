@@ -20,5 +20,6 @@ const flashSales = new schema(
 
 mongoose.set('strictQuery', false);
 mongoose.plugin(slug);
+const ecommerce = mongoose.connection.useDb('ecommerce');
 
-module.exports = mongoose.model('flashSales', flashSales);
+module.exports = ecommerce.model('flashSales', flashSales);
