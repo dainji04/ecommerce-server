@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 
-const bestSell = new schema(
+const phones = new schema(
     {
         name: { type: String, required: true },
         price: { type: Number, required: true },
@@ -22,4 +22,4 @@ mongoose.plugin(slug);
 
 const ecommerce = mongoose.connection.useDb('ecommerce');
 
-module.exports = ecommerce.model('bestSell', bestSell);
+module.exports = ecommerce.model('phones', phones);

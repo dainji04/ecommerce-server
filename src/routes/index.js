@@ -1,9 +1,9 @@
 const site = require('./site');
 const flashSales = require('./flash');
-const bestSell = require('./bestSell');
+const phones = require('./phones');
 
 function route(app) {
-    app.use('/best-sell', bestSell);
+    app.use('/best-sell', phones);
 
     app.use('/flash-sales', flashSales);
 

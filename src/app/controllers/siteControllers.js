@@ -1,6 +1,4 @@
 const flashSales = require('../models/flashSales');
-const { mutipleMongooseToObject } = require('../../util/index');
-
 class SiteControllers {
     // [GET] /
     index(req, res) {

@@ -1,7 +1,7 @@
-const bestSell = require('../models/bestSell');
+const bestSell = require('../models/phones');
 
-class bestSellControllers {
-    // [GET] /best-sell
+class phoneControllers {
+    // [GET] /phones
     async getAll(req, res) {
         try {
             await bestSell.find({}).then((bestSell) => {
@@ -12,7 +12,7 @@ class bestSellControllers {
         }
     }
 
-    // [GET] /best-sell/:id
+    // [GET] /phones/:id
     async getItem(req, res) {
         try {
             await bestSell.findById(req.params.id).then((item) => {
@@ -23,7 +23,7 @@ class bestSellControllers {
         }
     }
 
-    // [POST] /best-sell/create
+    // [POST] /phones/create
     create(req, res) {
         const product = new bestSell(req.body);
         try {
@@ -36,4 +36,4 @@ class bestSellControllers {
     }
 }
 
-module.exports = new bestSellControllers();
+module.exports = new phoneControllers();
