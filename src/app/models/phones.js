@@ -8,6 +8,7 @@ const phones = new schema(
         price: { type: Number, required: true },
         stock: { type: Number, required: true },
         thumbnail: { type: String, required: true },
+        discount: { type: Number, required: true },
         description: { type: String, required: true },
         detailsImg: { type: Array, required: true },
         slug: { type: String, slug: 'name' },

@@ -1,11 +1,11 @@
-const bestSell = require('../models/phones');
+const phones = require('../models/phones');
 
 class phoneControllers {
     // [GET] /phones
     async getAll(req, res) {
         try {
-            await bestSell.find({}).then((bestSell) => {
-                res.json({ success: true, bestSell });
+            await phones.find({}).then((phones) => {
+                res.json(phones);
             });
         } catch (err) {
             res.status(500).json({ message: 'failed' });
@@ -15,8 +15,8 @@ class phoneControllers {
     // [GET] /phones/:id
     async getItem(req, res) {
         try {
-            await bestSell.findById(req.params.id).then((item) => {
-                res.status(200).json(item);
+            await phones.findById(req.params.id).then((phone) => {
+                res.status(200).json(phone);
             });
         } catch (err) {
             res.status(500).json({ message: 'failed', err });
@@ -25,7 +25,7 @@ class phoneControllers {
 
     // [POST] /phones/create
     create(req, res) {
-        const product = new bestSell(req.body);
+        const product = new phones(req.body);
         try {
             product.save().then((product) => {
                 res.status(201).json({ message: 'successfully', product });
