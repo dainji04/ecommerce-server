@@ -2,17 +2,18 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 
-const flashSales = new schema(
+const watches = new schema(
     {
-        // itemId: { type: String, required: true },
-        name: { type: String, required: true },
-        thumbnail: { type: String, required: true },
+        brand: { type: String, required: true },
+        colors: { type: Array, required: true },
         description: { type: String, required: true },
-        price: { type: Number, required: true },
-        discount: { type: Number, required: true },
-        stock: { type: Number, required: true },
         detailsImg: { type: Array, required: true },
+        discount: { type: Number, default: 0 },
+        name: { type: String, required: true },
+        price: { type: Number, required: true },
         slug: { type: String, slug: 'name' },
+        stock: { type: Number, required: true },
+        thumbnail: { type: String, required: true },
     },
     {
         timestamps: true,
@@ -21,6 +22,7 @@ const flashSales = new schema(
 
 mongoose.set('strictQuery', false);
 mongoose.plugin(slug);
+
 const ecommerce = mongoose.connection.useDb('ecommerce');
 
-module.exports = ecommerce.model('flashSales', flashSales);
+module.exports = ecommerce.model('watches', watches);

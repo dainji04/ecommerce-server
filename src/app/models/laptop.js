@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 
-const phones = new schema(
+const laptop = new schema(
     {
         brand: { type: String, required: true },
         colors: { type: Array, required: true },
@@ -16,6 +16,10 @@ const phones = new schema(
         slug: { type: String, slug: 'name' },
         stock: { type: Number, required: true },
         thumbnail: { type: String, required: true },
+        flashSalesId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'flashSales',
+        },
     },
     {
         timestamps: true,
@@ -27,4 +31,4 @@ mongoose.plugin(slug);
 
 const ecommerce = mongoose.connection.useDb('ecommerce');
 
-module.exports = ecommerce.model('phones', phones);
+module.exports = ecommerce.model('laptop', laptop);

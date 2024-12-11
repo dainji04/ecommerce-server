@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const slug = require('mongoose-slug-generator');
 
-const phones = new schema(
+const tablet = new schema(
     {
         brand: { type: String, required: true },
         colors: { type: Array, required: true },
@@ -27,4 +27,4 @@ mongoose.plugin(slug);
 
 const ecommerce = mongoose.connection.useDb('ecommerce');
 
-module.exports = ecommerce.model('phones', phones);
+module.exports = ecommerce.model('tablet', tablet);
