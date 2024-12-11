@@ -16,29 +16,12 @@ const flashSales = require('../models/flashSales');
 //             endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
 //         });
 //         await flashSale.save();
+//         findbyid(body.itemId).then((item) => {item.discount = body.discount})
 //     } catch (error) {
 //         console.log(error);
 //     }
 // };
 class flashControllers {
-    // [GET] /flash-sales
-    async getAll(req, res) {
-        await flashSales.find({}).then((flashSales) => {
-            res.json(flashSales);
-        });
-    }
-
-    // [GET] /flash-sales/:id
-    async getItem(req, res) {
-        try {
-            await flashSales.findById(req.params.id).then((item) => {
-                res.status(200).json({ success: 'successfully', item });
-            });
-        } catch (error) {
-            res.status(500).json({ err: error });
-        }
-    }
-
     // [POST] /flash-sales/create
     create(req, res, next) {
         const flashSale = new flashSales(req.body);
@@ -50,6 +33,24 @@ class flashControllers {
                 });
             })
             .catch(next);
+    }
+
+    // [GET] /flash-sales
+    async getAll(req, res) {
+        await flashSales.find({}).then((flashSales) => {
+            res.json(flashSales);
+        });
+    }
+
+    // [GET] /flash-sales/:id
+    async getItem(req, res) {
+        try {
+            await flashSales.findById(req.params.id).then((item) => {
+                res.status(200).json(item);
+            });
+        } catch (error) {
+            res.status(500).json({ err: error });
+        }
     }
 }
 

@@ -16,10 +16,6 @@ const laptop = new schema(
         slug: { type: String, slug: 'name' },
         stock: { type: Number, required: true },
         thumbnail: { type: String, required: true },
-        flashSalesId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'flashSales',
-        },
     },
     {
         timestamps: true,

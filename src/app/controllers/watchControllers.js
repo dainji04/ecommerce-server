@@ -6,7 +6,7 @@ class watchControllers {
         const product = new watch(req.body);
         try {
             product.save().then((product) => {
-                res.status(201).json({ message: 'successfully', product });
+                res.status(201).json(product);
             });
         } catch (err) {
             res.status(500).json({ message: 'failed', err });

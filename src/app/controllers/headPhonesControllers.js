@@ -1,6 +1,18 @@
 const headPhones = require('../models/headPhones');
 
 class headPhonesControllers {
+    // [POST] /headPhones/create
+    create(req, res) {
+        const product = new headPhones(req.body);
+        try {
+            product.save().then((product) => {
+                res.status(201).json(product);
+            });
+        } catch (err) {
+            res.status(500).json({ message: 'failed', err });
+        }
+    }
+
     // [GET] /headPhones
     async getAll(req, res) {
         try {
@@ -15,20 +27,8 @@ class headPhonesControllers {
     // [GET] /headPhones/:id
     async getItem(req, res) {
         try {
-            await headPhones.findById(req.params.id).then((phone) => {
-                res.status(200).json(phone);
-            });
-        } catch (err) {
-            res.status(500).json({ message: 'failed', err });
-        }
-    }
-
-    // [POST] /headPhones/create
-    create(req, res) {
-        const product = new headPhones(req.body);
-        try {
-            product.save().then((product) => {
-                res.status(201).json({ message: 'successfully', product });
+            await headPhones.findById(req.params.id).then((headphone) => {
+                res.status(200).json(headphone);
             });
         } catch (err) {
             res.status(500).json({ message: 'failed', err });
