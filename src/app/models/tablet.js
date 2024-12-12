@@ -16,6 +16,7 @@ const tablet = new schema(
         slug: { type: String, slug: 'name' },
         stock: { type: Number, required: true },
         thumbnail: { type: String, required: true },
+        type: { type: String, required: true },
     },
     {
         timestamps: true,
