@@ -1,6 +1,6 @@
 const flashSales = require('./flash');
 const laptop = require('./laptop');
-const headphones = require('./headphones');
+const headphones = require('./headPhones');
 const phones = require('./phone');
 const site = require('./site');
 const tablet = require('./tablet');
@@ -15,11 +15,11 @@ function route(app) {
 
     app.use('/phone', phones);
 
-    app.use('/', site);
-
     app.use('/tablet', tablet);
 
     app.use('/watch', watch);
+
+    app.use('/', site);
 }
 
 module.exports = route;
