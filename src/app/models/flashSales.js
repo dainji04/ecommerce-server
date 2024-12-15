@@ -4,7 +4,6 @@ const slug = require('mongoose-slug-generator');
 
 const flashSales = new schema(
     {
-        // itemId: { type: String, required: true },
         brand: { type: String, required: true },
         colors: { type: Array, required: true },
         description: { type: String, required: true },
@@ -12,6 +11,8 @@ const flashSales = new schema(
         discount: { type: Number, default: 0 },
         name: { type: String, required: true },
         price: { type: Number, required: true },
+        ram: { type: Array },
+        rom: { type: Array },
         slug: { type: String, slug: 'name' },
         stock: { type: Number, required: true },
         thumbnail: { type: String, required: true },
