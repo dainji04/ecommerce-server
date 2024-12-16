@@ -1,4 +1,4 @@
-const bestSells = require('./bestSells');
+const bestSells = require('./bestsells');
 const flashSales = require('./flash');
 const laptop = require('./laptop');
 const headphones = require('./headPhones');
