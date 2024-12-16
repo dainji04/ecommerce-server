@@ -1,4 +1,3 @@
-const allproducts = require('../models/allProducts');
 const phones = require('../models/phones');
 const laptop = require('../models/laptop');
 const watch = require('../models/watch');
