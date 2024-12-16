@@ -15,7 +15,9 @@ class allProducts {
                 watch.find({}),
                 tablet.find({}),
             ]);
-            res.json(allProducts);
+
+            const mergedProducts = [].concat(...allProducts);
+            res.json(mergedProducts);
         } catch (error) {
             res.status(500).json({ message: error });
         }
