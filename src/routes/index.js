@@ -1,3 +1,4 @@
+const allProducts = require('./allproducts');
 const bestSells = require('./bestsells');
 const flashSales = require('./flash');
 const laptop = require('./laptop');
@@ -8,6 +9,8 @@ const tablet = require('./tablet');
 const watch = require('./watch');
 
 function route(app) {
+    app.use('/all-products', allProducts);
+
     app.use('/best-sells', bestSells);
 
     app.use('/flash-sales', flashSales);

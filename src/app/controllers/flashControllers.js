@@ -1,26 +1,5 @@
 const flashSales = require('../models/flashSales');
 
-// const addIphoneToFlashSales = async (body) => {
-//     console.log(id, discount);
-//     try {
-//         const flashSale = new FlashSale({
-//             itemId: body.itemId,
-//             name: body.name,
-//             thumbnail: body.thumbnail,
-//             description: body.description,
-//             price: body.price,
-//             discount: discount,
-//             stock: body.stock,
-//             detailsImg: body.detailsImg,
-//             startDate: new Date(),
-//             endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-//         });
-//         await flashSale.save();
-//         findbyid(body.itemId).then((item) => {item.discount = body.discount})
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
 class flashControllers {
     // [POST] /flash-sales/create
     create(req, res, next) {
