@@ -7,6 +7,7 @@ const phones = require('./phone');
 const site = require('./site');
 const tablet = require('./tablet');
 const watch = require('./watch');
+const user = require('./user');
 
 function route(app) {
     app.use('/all-products', allProducts);
@@ -22,6 +23,8 @@ function route(app) {
     app.use('/phone', phones);
 
     app.use('/tablet', tablet);
+
+    app.use('/user', user);
 
     app.use('/watch', watch);
 
