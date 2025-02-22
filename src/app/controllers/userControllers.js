@@ -14,10 +14,21 @@ class userControllers {
     }
 
     getInfo(req, res, next) {
-        user.find()
-            .then((users) => {
+        user.findOne({ emailLogin: req.params.email })
+            .then((user) => {
                 res.status(200).json({
-                    data: users,
+                    data: user,
+                });
+            })
+            .catch(next);
+    }
+
+    update(req, res, next) {
+        console.log(req.body);
+        user.findOneAndUpdate({ emailLogin: req.params.email }, req.body)
+            .then(() => {
+                res.status(200).json({
+                    message: 'Update user successfully!!!',
                 });
             })
             .catch(next);

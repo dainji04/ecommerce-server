@@ -3,9 +3,10 @@ const schema = mongoose.Schema;
 
 const user = new schema({
     name: { type: String, required: true },
-    email: { type: String, required: true },
-    phoneNumber: { type: String },
-    address: { type: String },
+    email: { type: String },
+    emailLogin: { type: String, required: true },
+    phoneNumber: { type: String, default: '' },
+    address: { type: String, default: '' },
     cart: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId },
