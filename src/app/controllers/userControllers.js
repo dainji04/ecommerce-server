@@ -108,6 +108,40 @@ class userControllers {
             })
             .catch(next);
     }
+
+    async deleteItemInWishList(req, res, next) {
+        try {
+            await user.findOneAndUpdate(
+                { emailLogin: req.params.email },
+                { $pull: { wishlist: { _id: req.params.id } } } // Xoá theo _id
+            );
+            res.status(200).json({
+                message: 'Delete item in wishlist successfully!!!',
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Failed to delete item in wishlist',
+                error,
+            });
+        }
+    }
+
+    async deleteItemInCart(req, res, next) {
+        try {
+            await user.findOneAndUpdate(
+                { emailLogin: req.params.email },
+                { $pull: { cart: { _id: req.params.id } } } // Xoá theo _id
+            );
+            res.status(200).json({
+                message: 'Delete item in cart successfully!!!',
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Failed to delete item in wishlist',
+                error,
+            });
+        }
+    }
 }
 
 module.exports = new userControllers();
