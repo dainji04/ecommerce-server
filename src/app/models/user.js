@@ -4,19 +4,25 @@ const schema = mongoose.Schema;
 const user = new schema({
     name: { type: String, required: true },
     email: { type: String },
-    emailLogin: { type: String, required: true },
+    emailLogin: { type: String, required: true, unique: true },
     phoneNumber: { type: String, default: '' },
     address: { type: String, default: '' },
     cart: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId },
-            quantity: { type: Number, required: true },
+            productName: { type: String, required: true },
+            productImage: { type: String, required: true },
+            productPrice: { type: Number, required: true },
             productType: { type: String, required: true },
+            quantity: { type: Number, default: 1 },
         },
     ],
     wishlist: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId },
+            productName: { type: String, required: true },
+            productImage: { type: String, required: true },
+            productPrice: { type: Number, required: true },
             productType: { type: String, required: true },
         },
     ],
