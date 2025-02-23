@@ -11,9 +11,8 @@ const user = new schema({
         {
             productId: { type: mongoose.Schema.Types.ObjectId },
             productName: { type: String, required: true },
-            productImage: { type: String, required: true },
             productPrice: { type: Number, required: true },
-            productType: { type: String, required: true },
+            subtotal: { type: Number, required: true, default: 0 },
             quantity: { type: Number, default: 1 },
         },
     ],

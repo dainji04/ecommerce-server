@@ -67,6 +67,47 @@ class userControllers {
             })
             .catch(next);
     }
+
+    getCart(req, res, next) {
+        user.findOne({ emailLogin: req.params.email })
+            .then((user) => {
+                res.status(200).json(user.cart);
+            })
+            .catch(next);
+    }
+
+    async addToCart(req, res, next) {
+        const findProduct = await user.findOne({
+            emailLogin: req.params.email,
+            cart: {
+                $elemMatch: { productId: req.body.productId },
+            },
+        });
+
+        if (findProduct) {
+            await user.findOneAndUpdate(
+                {
+                    emailLogin: req.params.email,
+                    'cart.productId': req.body.productId,
+                },
+                { $inc: { 'cart.$.quantity': 1 } }
+            );
+            return res.status(200).json({
+                message: 'Product quantity increased in cart successfully!!!',
+            });
+        }
+
+        user.findOneAndUpdate(
+            { emailLogin: req.params.email },
+            { $push: { cart: req.body } }
+        )
+            .then(() => {
+                res.status(200).json({
+                    message: 'Add to cart successfully!!!',
+                });
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new userControllers();
