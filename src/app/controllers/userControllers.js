@@ -128,16 +128,41 @@ class userControllers {
 
     async deleteItemInCart(req, res, next) {
         try {
-            await user.findOneAndUpdate(
-                { emailLogin: req.params.email },
-                { $pull: { cart: { _id: req.params.id } } } // Xoá theo _id
-            );
-            res.status(200).json({
-                message: 'Delete item in cart successfully!!!',
+            const userDoc = await user.findOne({
+                emailLogin: req.params.email,
+                'cart._id': req.params.id,
             });
+
+            if (!userDoc) {
+                return res.status(404).json({
+                    message: 'Item not found in cart',
+                });
+            }
+
+            const cartItem = userDoc.cart.find(
+                (item) => item._id.toString() === req.params.id
+            );
+
+            if (cartItem.quantity > 1) {
+                await user.findOneAndUpdate(
+                    { emailLogin: req.params.email, 'cart._id': req.params.id },
+                    { $inc: { 'cart.$.quantity': -1 } }
+                );
+                res.status(200).json({
+                    message: 'Decreased item quantity in cart successfully!!!',
+                });
+            } else {
+                await user.findOneAndUpdate(
+                    { emailLogin: req.params.email },
+                    { $pull: { cart: { _id: req.params.id } } }
+                );
+                res.status(200).json({
+                    message: 'Deleted item from cart successfully!!!',
+                });
+            }
         } catch (error) {
             res.status(500).json({
-                message: 'Failed to delete item in wishlist',
+                message: 'Failed to delete or update item in cart',
                 error,
             });
         }
